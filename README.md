@@ -13,6 +13,9 @@ The scrape method is build using Python language, with the help of Python's libr
     ```
 2. Or run it using the `.bat` file included in the project
 
+`[shop_domain]` is the name of the shop after the `tokopedia.com\` link.
+For example `https://www.tokopedia.com/its-iki` shop domain would be `its-iki`
+
 ## Result
 Here is the list  of column name and definition in the excel file:
 |Column Name        |Definition                                         |                          
