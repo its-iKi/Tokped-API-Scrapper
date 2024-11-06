@@ -62,11 +62,11 @@ for i in range(0, shop_pageCount):
     
     for j in range(0, len(shop_products)):
         product = {
-           'nama_produk' : shop_products[j]['name'],
-            'harga_produk' : shop_products[j]['price']['text_idr'],
-            'rating_produk' : shop_products[j]['stats']['averageRating'],
-            'gambar_produk' : shop_products[j]['primary_image']['original'],
-            'link_produk' : shop_products[j]['product_url']
+           'Nama Produk' : shop_products[j]['name'],
+           'Harga Produk' : shop_products[j]['price']['text_idr'],
+           'Rating Produk' : shop_products[j]['stats']['averageRating'],
+           'Gambar Produk' : shop_products[j]['primary_image']['original'],
+           'Link Produk' : shop_products[j]['product_url']
         }
         
         product_list.append(product)
@@ -82,7 +82,7 @@ for i in range(0, len(product_list)):
    product_header = {
         'sec-ch-ua-platform' : '"Windows"',
         'X-Version' : '6e0e4d6',
-        'Referer' : f"{product_list[i]['link_produk']}",
+        'Referer' : f"{product_list[i]['Link Produk']}",
         'sec-ch-ua' : '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
         'sec-ch-ua-mobile' : '?0',
         'X-Source' : 'tokopedia-lite',
@@ -93,7 +93,7 @@ for i in range(0, len(product_list)):
         'DNT' : '1',
         'content-type' : 'application/json',
         'X-Tkpd-Lite-Service' : 'zeus'}
-   replacedLink = product_list[i]['link_produk'].replace(('https://www.tokopedia.com/' + shop_identifier + '/'), f'')
+   replacedLink = product_list[i]['Link Produk'].replace(('https://www.tokopedia.com/' + shop_identifier + '/'), f'')
    markIndex = replacedLink.find('?extParam')
    product_key = replacedLink[0:markIndex]
    extParam = replacedLink[(markIndex + 10):len(replacedLink)]
@@ -127,13 +127,13 @@ for i in range(0, len(product_list)):
    products = product_response.json()[0]['data']['pdpGetLayout']
    for j in range(0, len(products.get('components'))):
       if products.get('components')[j].get('name') == 'product_content':
-         product_list[i]['stok_produk'] = products.get('components')[j].get('data')[0]['stock']['value']
+         product_list[i]['Stock'] = products.get('components')[j].get('data')[0]['stock']['value']
       if products.get('components')[j].get('name') == 'product_detail':
          for k in range(0, len(products.get('components')[j].get('data')[0]['content'])):
             if(products.get('components')[j].get('data')[0]['content'][k].get('title') == 'Etalase'):
-               product_list[i]['etalase_produk'] = products.get('components')[j].get('data')[0]['content'][k]['subtitle']
+               product_list[i]['Etalase'] = products.get('components')[j].get('data')[0]['content'][k]['subtitle']
             if(products.get('components')[j].get('data')[0]['content'][k].get('title') == 'Deskripsi'):
-               product_list[i]['deskripsi_produk'] = products.get('components')[j].get('data')[0]['content'][k]['subtitle']
+               product_list[i]['Deskripsi Produk'] = products.get('components')[j].get('data')[0]['content'][k]['subtitle']
 #    print(f'[Tokped API Scraper]: Processing {len(product_list)} products')
 
 print(f'[Tokped API Scraper]: Exporting {len(product_list)} product to excel(xlsx)')
